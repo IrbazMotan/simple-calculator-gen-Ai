@@ -3,8 +3,11 @@ import os
 from huggingface_hub import InferenceApi
 import tempfile
 
+# Set your Hugging Face API token here if it's not set in the environment
+os.environ["HUGGING_FACE_API_TOKEN"] = "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"  # Replace with your actual token
+
 # Get the token from the environment variable
-api_token = os.getenv("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")
+api_token = os.getenv("HUGGING_FACE_API_TOKEN")
 if api_token is None:
     st.error("API token not found. Please set the HUGGING_FACE_API_TOKEN environment variable.")
 else:
