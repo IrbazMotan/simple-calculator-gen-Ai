@@ -1,46 +1,17 @@
-{
-  "nbformat": 4,
-  "nbformat_minor": 0,
-  "metadata": {
-    "colab": {
-      "provenance": [],
-      "authorship_tag": "ABX9TyOzsxoWxQXNEg8Ra0IyLOas",
-      "include_colab_link": true
-    },
-    "kernelspec": {
-      "name": "python3",
-      "display_name": "Python 3"
-    },
-    "language_info": {
-      "name": "python"
-    }
-  },
-  "cells": [
-    {
-      "cell_type": "markdown",
-      "metadata": {
-        "id": "view-in-github",
-        "colab_type": "text"
-      },
-      "source": [
-        "<a href=\"https://colab.research.google.com/github/IrbazMotan/simple-calculator-gen-Ai/blob/main/try.py\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
-      ]
-    },
-    {
-      "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "id": "Iq2Nii2u8bvh"
-      },
-      "outputs": [],
-      "source": [
-        "import streamlit as st\n",
-        "# Load model directly\n",
-        "from transformers import AutoProcessor, AutoModelForTextToWaveform\n",
-        "\n",
-        "processor = AutoProcessor.from_pretrained(\"suno/bark\")\n",
-        "model = AutoModelForTextToWaveform.from_pretrained(\"suno/bark\")"
-      ]
-    }
-  ]
-}
+# try.py
+INCLUDE_COLAB_LINK = True  # Or False, depending on your needs
+
+# ... other code
+if INCLUDE_COLAB_LINK:
+    # Code to include the Colab link (if needed)
+  # try.py
+def my_function(include_colab_link=True):
+  # ... other code
+  if include_colab_link:
+      # Code to include the Colab link (if needed)
+
+# ... other code
+my_function(include_colab_link=False)  # Pass False if not needed
+from transformers import pipeline
+
+tts = pipeline("text-to-speech", model="suno/bark")  # Or your chosen model
