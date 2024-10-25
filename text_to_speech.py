@@ -3,8 +3,10 @@ import os
 from huggingface_hub import InferenceApi
 import tempfile
 
-# Set your Hugging Face API token here if it's not set in the environment
-os.environ["HUGGING_FACE_API_TOKEN"] = "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"  # Replace with your actual token
+# Ensure you replace this with your actual Hugging Face API token.
+# You can also set this in your environment variables if you prefer.
+os.environ["HUGGING_FACE_API_TOKEN"] = "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
+"  # Replace with your actual token
 
 # Get the token from the environment variable
 api_token = os.getenv("HUGGING_FACE_API_TOKEN")
@@ -25,10 +27,13 @@ else:
             st.write(f"Input Text: {text}")
             
             response = api(text)  # Call API for text-to-speech
-            st.write(f"API Response: {response}")  # Debugging output for response
+            
+            # Debugging output for response
+            st.write(f"API Response: {response}")  
 
             if "audio" not in response:
-                return "Error: No audio in response."  # Handles missing audio key
+                st.error("Error: No audio in response.")
+                return None
 
             # Save audio to a temporary .wav file
             with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as temp_audio:
@@ -45,3 +50,4 @@ else:
             st.audio(audio_path)
         else:
             st.write("Audio generation failed. Check logs for details.")
+
