@@ -3,10 +3,11 @@ import os
 from huggingface_hub import InferenceApi
 import tempfile
 
-# Ensure you replace this with your actual Hugging Face API token.
-# You can also set this in your environment variables if you prefer.
-os.environ["HUGGING_FACE_API_TOKEN"] = "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
-"  # Replace with your actual token
+# Set your Hugging Face API token here directly
+# Replace "YOUR_HUGGING_FACE_API_TOKEN" with your actual token
+# It's better to set it in environment variables for security
+api_token = "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"  # Replace with your actual token
+os.environ["HUGGING_FACE_API_TOKEN"] = api_token  # You can keep this for reference, but not needed after setting the token above
 
 # Get the token from the environment variable
 api_token = os.getenv("HUGGING_FACE_API_TOKEN")
@@ -24,12 +25,16 @@ else:
     def text_to_speech_bark(text):
         """Function to call Bark model and save audio response."""
         try:
+            if not text:
+                st.error("Please enter some text.")
+                return None
+            
             st.write(f"Input Text: {text}")
             
             response = api(text)  # Call API for text-to-speech
             
             # Debugging output for response
-            st.write(f"API Response: {response}")  
+            st.write(f"API Response: {response}")
 
             if "audio" not in response:
                 st.error("Error: No audio in response.")
