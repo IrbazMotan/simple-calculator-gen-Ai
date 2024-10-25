@@ -1,3 +1,4 @@
+import streamlit as st
 INCLUDE_COLAB_LINK = True  # Or False, depending on your needs
 
 # ... other code
