@@ -1,37 +1,36 @@
 import streamlit as st
 from huggingface_hub import InferenceApi
 import tempfile
-   
-# Initialize Hugging Face Inference API with the Bark model
-# Replace 'YOUR_HUGGING_FACE_API_TOKEN' with your actual Hugging Face token
-api = InferenceApi(repo_id="suno/bark", token=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)
 
-# Streamlit App for Text-to-Speech
+# Initialize Hugging Face Inference API with Bark model
+api_token =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  # Replace with your token
+api = InferenceApi(repo_id="suno/bark", token=api_token)
+
 st.title("Text-to-Speech App with Bark Model")
 
-# Input Text
+# Input for the text you want to convert
 text_input = st.text_input("Enter text to convert to speech:")
 
-# Function to Convert Text to Speech
 def text_to_speech_bark(text):
+    """Function to call Bark model and save audio response."""
     try:
-        # Call the Bark model API for text-to-speech conversion
-        response = api(text)
-        
-        # Save the audio to a temporary file
+        response = api(text)  # Call API for text-to-speech
+        if "audio" not in response:
+            return "Error: No audio in response."  # Handles missing audio key
+
+        # Save audio to a temporary .wav file
         with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as temp_audio:
             temp_audio.write(response["audio"].encode("ISO-8859-1"))
-            temp_audio_path = temp_audio.name
-
-        return temp_audio_path
+            return temp_audio.name
     except Exception as e:
-        return str(e)
+        # Catch and display detailed error in Streamlit
+        st.error(f"Error: {str(e)}")
+        return None
 
-# Generate and Play Audio
+# Generate audio if there's input
 if text_input:
     audio_path = text_to_speech_bark(text_input)
-    if isinstance(audio_path, str) and audio_path.endswith(".wav"):
-        st.write("Audio Generated Successfully!")
-        st.audio(audio_path)  # Play the audio in Streamlit
+    if audio_path and audio_path.endswith(".wav"):
+        st.audio(audio_path)
     else:
-        st.write("Error generating audio:", audio_path)
+        st.write("Audio generation failed. Check logs for details.")
