@@ -4,7 +4,7 @@ from huggingface_hub import InferenceApi
 import tempfile
 
 # Get the token from the environment variable
-api_token = os.getenv("HUGGING_FACE_API_TOKEN")
+api_token = os.getenv("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")
 if api_token is None:
     st.error("API token not found. Please set the HUGGING_FACE_API_TOKEN environment variable.")
 else:
