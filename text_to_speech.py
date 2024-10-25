@@ -3,7 +3,8 @@ from huggingface_hub import InferenceApi
 import tempfile
 
 # Initialize Hugging Face Inference API with the Bark model
-api = InferenceApi(repo_id="suno/bark", token="YOUR_HUGGING_FACE_API_TOKEN")  # Replace with your Hugging Face token
+# Replace 'YOUR_HUGGING_FACE_API_TOKEN' with your actual Hugging Face token
+api = InferenceApi(repo_id="suno/bark", token="YOUR_HUGGING_FACE_API_TOKEN")
 
 # Streamlit App for Text-to-Speech
 st.title("Text-to-Speech App with Bark Model")
